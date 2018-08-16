@@ -4,12 +4,15 @@ const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// GETTING CONFIG DATA
+require('./config/config');
+
 /**
  * Making mongoose use Promise mongoose use callbacks as default
  */
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/graphdb2',{
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
 })
     .then(() => {
@@ -19,13 +22,14 @@ mongoose.connect('mongodb://localhost:27017/graphdb2',{
         console.log(err);
     });
 
-
-const PORT = process.env.PORT || 5000;
-
 const app = express();
 
 // Allow cross origin request
 app.use(cors());
+
+app.get('/', (req, res, next) => {
+    res.send("<h1>Nothing to show here to access the graphiql ui navigate to /graphql </h1>");
+});
 
 // MAKING EXPRESS USE GRAPHQL
 /**
@@ -36,6 +40,6 @@ app.use('/graphql', graphHTTP({
     graphiql: true
 }));
 
-app.listen(PORT, () =>{
-    console.log(`App Listening on ${PORT}`);
+app.listen(process.env.PORT, () =>{
+    console.log(`App Listening on ${process.env.PORT}`);
 });

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { getBookQuery } from '../queries/queries';
-import BookList from './BookList';
 
 class BookDetails extends Component {
+
 // Function to fetch graphql books data from server
   dispayBookDetails(){
     const { book } = this.props.data;
     if(book){
       return (
         <div>
-          <h2>{ book.name }</h2>
-          <p>{ book.genre }</p>
-          <p>{ book.author.name }</p>
+          <h2>{book.name}</h2>
+          <p>{book.genre}</p>
+          <p>{book.author.name}</p>
           <p>All Books by this author</p>
           <ul className="other-books">
             { book.author.books.map(item => {
@@ -32,10 +32,9 @@ class BookDetails extends Component {
   }
 
   render() {
-      console.log(this.props);
     return (
       <div id="book-details">
-        { this.dispayBookDetails() }
+        {this.dispayBookDetails()}
       </div>
     );
   }

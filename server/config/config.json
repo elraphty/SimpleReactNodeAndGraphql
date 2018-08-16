@@ -1,0 +1,9 @@
+{
+  "development": {
+    "PORT": "5000",
+    "MONGODB_URI": "mongodb://localhost:27017/graphdb2"
+  },
+  "production": {
+    "MONGODB_URI": "mongodb://elraphty:Elraphty1@ds121982.mlab.com:21982/graphql"
+  }
+}

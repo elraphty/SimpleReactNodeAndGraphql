@@ -5,6 +5,7 @@ import { getBooksQuery } from '../queries/queries';
 // Components
 import BookDetails from './BookDetails';
 class BookList extends Component {
+
   constructor(props){
     super(props);
 
@@ -12,6 +13,7 @@ class BookList extends Component {
       selected: null
     }
   }
+
 // Function to fetch graphql books data from server
   displayBooks(){
     let data = this.props.data;
@@ -19,7 +21,7 @@ class BookList extends Component {
         return (<div className='loading'>loading books....</div>);
       }else{
         return data.books.map(book => {
-          return (<li key={book.id} onClick={ (e) => { this.setState({selected: book.id}) } }>{book.name}</li>);
+          return (<li key={book.id} onClick={ (e) => { this.setState({ selected: book.id }) } }>{book.name}</li>);
         });
       }
   }
@@ -30,7 +32,7 @@ class BookList extends Component {
           <ul id="book-list">
             {this.displayBooks()}
           </ul>
-          <BookDetails bookId={ this.state.selected }/>
+          <BookDetails bookId={this.state.selected}/>
       </div>
     );
   }
